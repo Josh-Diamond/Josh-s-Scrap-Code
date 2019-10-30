@@ -13,7 +13,7 @@ const SettingsIcon = <IoIosSettings />
 
 export default function Nav() {
     return (
-        <div className={css({ backgroundColor: '#082B84',width: '200px', height: '100vh'})}>
+        <div className={css({ backgroundColor: '#082B84',width: '240px', height: '100vh'})}>
             <NavLogo />
             <NavItem title="Home" image={HomeIcon} />
             <NavItem title="Monitors" icon={MonitorsIcon} />
