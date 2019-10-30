@@ -4,12 +4,11 @@ import NavLogo from './NavLogo'
 import NavItem from './NavItem'
 import HomeIcon from '../static/Home.png'
 import KeyIcon from '../static/Key.png'
-import { FiEdit } from "react-icons/fi";
-import { IoIosSettings } from "react-icons/io";
+import { FiEdit, FiSettings } from "react-icons/fi";
 
 
 const MonitorsIcon = <FiEdit />
-const SettingsIcon = <IoIosSettings />
+const SettingsIcon = <FiSettings />
 
 export default function Nav() {
     return (

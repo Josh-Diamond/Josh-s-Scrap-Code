@@ -16,13 +16,13 @@ export default function NavItem({ title, image, icon }) {
         <img
           src={image}
           alt={`${title} Icon`}
-          className={css({ paddingRight: "10px", width: "30px" })}
+          className={css({ paddingRight: "10px", width: "25px" })}
         />
       ) : (
         <div
           className={css({
             color: "white",
-            fontSize: "1.5rem",
+            fontSize: "1.3rem",
             paddingRight: "10px",
             width: "30px"
           })}
