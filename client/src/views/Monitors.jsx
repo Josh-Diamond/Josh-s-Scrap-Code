@@ -9,13 +9,15 @@ import Card from "../components/Card"
 import { colors, breakingPoints } from "../components/Styles"
 import BlankCard from "../components/BlankCard"
 import { css } from 'emotion'
+import Nav from '../components/Nav'
 
 export default function Monitors({ pumps }) {
   const [modalId, setModalId] = useState(null)
 
   return (
-    <div className={css({ width: "100%", backgroundColor: '#F3F7FC', height: '100vh' })}>
-      <div className={css({ padding: "20px 20px", maxWidth: 1240, margin: "0 auto" })}>
+    <div className={css({ width: "100%", backgroundColor: '#F3F7FC', height: '100vh', display: 'flex' })}>
+      <Nav />
+      <div className={css({ width: '100%', padding: "20px 20px", maxWidth: 1240, margin: "0 auto" })}>
         {/* Card Section */}
         <div>
           <div
@@ -93,3 +95,14 @@ export default function Monitors({ pumps }) {
     // </div>
   )
 }
+
+{/* <details>
+
+<summary>
+  <p>Filter +</p>
+  </summary> 
+
+
+
+  <p>Shown once expanded</p>
+</details> */}

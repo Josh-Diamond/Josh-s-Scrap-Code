@@ -4,6 +4,7 @@ import Modal from "../components/Modal"
 import SearchBar from './SearchBar'
 import Filter from './Filter'
 import { css } from 'emotion'
+import Nav from './Nav'
 
 export default function Map({ pumps, setModalId, modalId }) {
 
@@ -36,7 +37,8 @@ export default function Map({ pumps, setModalId, modalId }) {
   }
 
   return (
-    <div className={css({ img: { cursor: "pointer" } })}>
+    <div className={css({ img: { cursor: "pointer" }, display: 'flex' })}>
+      <Nav />
       <ReactMapGL
         fitBounds={undefined}
         maxBounds={maxBounds}
