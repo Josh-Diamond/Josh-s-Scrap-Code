@@ -32,6 +32,7 @@ export default function Filter() {
           backgroundColor: "#082B84",
           borderRadius: "6px",
           zIndex: "9999999999999",
+          // transition: "0.2s",
         })}>
 
         {/* Summary */}
@@ -43,6 +44,7 @@ export default function Filter() {
             outline: "none",
             cursor: "pointer",
             margin: "0 5%",
+            // transition: "0.2s",
             "::-webkit-details-marker": {
               display: "none",
             },
@@ -146,7 +148,7 @@ export default function Filter() {
                           background: "#01c000",
                           borderRadius: "50px",
                           height: "18px",
-                          left: "18px",
+                          left: "20px",
                           position: "absolute",
                           transition: "0.2s",
                           width: "20px",
@@ -211,7 +213,7 @@ export default function Filter() {
                           background: "#01c000",
                           borderRadius: "50px",
                           height: "18px",
-                          left: "18px",
+                          left: "20px",
                           position: "absolute",
                           transition: "0.2s",
                           width: "20px",
@@ -276,7 +278,7 @@ export default function Filter() {
                           background: "#01c000",
                           borderRadius: "50px",
                           height: "18px",
-                          left: "18px",
+                          left: "20px",
                           position: "absolute",
                           transition: "0.2s",
                           width: "20px",

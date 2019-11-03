@@ -8,10 +8,10 @@ export default function Admin() {
     return (
         <div className={css({ display: 'flex'})}>
             <Nav />
-            <div className={css({ margin: '0 5%', width: '100%', border: '1px solid red'})}>
+            <div className={css({ margin: '0 5%', width: '100%'})}>
                 <h2 className={css({ fontWeight: '400' })}>WellDone Sensors</h2>
                 {/* Org Card */}
-                <div className={css({ border: '1px solid red', borderRadius: '5px', width: '400px', margin: '0 auto'})}>
+                <div className={css({ borderRadius: '5px', width: '400px', margin: '0 auto'})}>
                     {/* Top Bar */}
                     <div className={css({borderRadius: '5px', backgroundColor: '#082B84', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 2%'})}>
                         <p className={css({color: 'white'})}>WellDone</p>
