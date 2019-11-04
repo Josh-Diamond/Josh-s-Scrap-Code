@@ -16,7 +16,7 @@ export default function NavItem({ title, image, icon }) {
         <img
           src={image}
           alt={`${title} Icon`}
-          className={css({ paddingRight: "10px", width: "25px" })}
+          className={css({ paddingRight: "15px", width: "25px" })}
         />
       ) : (
         <div
