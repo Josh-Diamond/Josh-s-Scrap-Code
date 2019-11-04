@@ -4,7 +4,7 @@ import StatusCard from './StatusCard'
 
 const statusData = [
     {
-        status: 0
+        status: 2
     },
     {
         status: 1
