@@ -1,8 +1,22 @@
-import React from 'react';
-import { css, cx } from 'emotion'
+import React, { useState, useEffect } from 'react';
+import { css } from 'emotion'
 import logo from '../static/loginICONS.png'
+import logoONE from '../static/loginONE.png'
+import logoTWO from '../static/loginTWO.png'
+import logoTHREE from '../static/loginTHREE.png'
 
 export default function Login() {
+  const [image, setImage] = useState(0)
+  const ImgArr = [logoONE, logoTWO, logoTHREE]
+  const randomImage = () => {
+    let num = Math.floor(Math.random() * ImgArr.length)
+    setImage(num)
+  }
+
+  useEffect(() => {
+    randomImage()
+  }, [])
+
     return (
       <div>
         {/* <Seo data={data} /> */}
@@ -11,7 +25,8 @@ export default function Login() {
             display: "flex",
             height: "100vh",
             // marginTop: "-40px",
-            backgroundColor: "#ffffff",
+            // backgroundImage: `url(${logoTHREE})`,
+            // backgroundSize: 'cover',
           })}>
           <div
             className={css({
@@ -25,9 +40,10 @@ export default function Login() {
               },
             })}>
             <img
+              // src={ImgArr[image]}
               src={logo}
               alt="WellDone Icons"
-              className={css({ width: "90%" })}
+              className={css({ width: '90%'})}
             />
           </div>
           <div

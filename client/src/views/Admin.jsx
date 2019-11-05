@@ -20,8 +20,9 @@ export default function Admin() {
                 {/* Middle Line */}
             <div className={css({ borderBottom: '1px solid #082B84', width: '100%'})}/>
                 {/* Middle Line End */}
-
+        
                 {/* Bottom Part */}
+                <div className={css({ backgroundColor: '#F3F7FC'})}>
                 <div>
                     <div className={css({ width: '100%', display: 'flex', alignItems: 'center'})}>
                     <h2 className={css({ margin: '2% 5%', fontWeight: '400' })}>Organizations</h2>
@@ -45,6 +46,7 @@ export default function Admin() {
                 {/* End Map Org Cards */}
             </div>
                 {/* End Bottom Part */}
+                </div>
             </div>
         </div>
     )
