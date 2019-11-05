@@ -11,9 +11,9 @@ import { FiEdit, FiSettings } from "react-icons/fi";
 const MonitorsIcon = <FiEdit />
 const SettingsIcon = <FiSettings />
 
-export default function Nav() {
+export default function Nav({ fixed }) {
     return (
-        <div className={css({ backgroundColor: '#082B84',width: '240px', height: '100vh'})}>
+        <div className={ fixed? css({ backgroundColor: '#082B84',width: '240px', height: '100vh', position: 'fixed'}) : css({ backgroundColor: '#082B84',width: '240px', height: '100vh'})}>
             <NavLogo />
             <Link to='/home' className={css({ textDecoration: 'none'})}>
                 <NavItem title="Home" image={HomeIcon} />
