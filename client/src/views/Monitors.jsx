@@ -95,14 +95,3 @@ export default function Monitors({ pumps }) {
     // </div>
   )
 }
-
-{/* <details>
-
-<summary>
-  <p>Filter +</p>
-  </summary> 
-
-
-
-  <p>Shown once expanded</p>
-</details> */}

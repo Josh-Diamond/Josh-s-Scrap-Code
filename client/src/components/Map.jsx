@@ -5,9 +5,13 @@ import SearchBar from './SearchBar'
 import Filter from './Filter'
 import { css } from 'emotion'
 import Nav from './Nav'
+import funcPin from '../static/funcPin.png'
+import unknownPin from '../static/unknownPin.png'
+import nonFuncPin from '../static/nonFuncPin.png'
 
-export default function Map({ pumps, setModalId, modalId }) {
 
+export default function Map({ pumps, setModalId, modalId, history }) {
+console.log('pumpppsss', pumps)
   const [viewPort, setViewPort] = useState({
     width: "100%",
     height: "100vh",
@@ -24,13 +28,14 @@ export default function Map({ pumps, setModalId, modalId }) {
     [14.841942, 107.66624], // Northeast coordinates
   ])
 
-  const mapPins = {
-    status: {
-      functional: "../static/success.svg",
-      unknown: "../static/unknown.svg",
-      nonFunctional: "../static/error.svg",
-    },
-  }
+  // const mapPins = {
+  //   status: {
+  //     functional: "../static/success.svg",
+  //     unknown: "../static/unknown.svg",
+  //     nonFunctional: "../static/error.svg",
+  //   },
+  // }
+  
 
   const mapAdjust = pump => {
     setViewPort({...viewPort, center: [pump.latitude, pump.longitude]})
@@ -38,7 +43,7 @@ export default function Map({ pumps, setModalId, modalId }) {
 
   return (
     <div className={css({ img: { cursor: "pointer" }, display: 'flex' })}>
-      <Nav />
+      <Nav history={history} />
       <ReactMapGL
         fitBounds={undefined}
         maxBounds={maxBounds}
@@ -53,10 +58,10 @@ export default function Map({ pumps, setModalId, modalId }) {
         {...viewPort}>
 
         {/* Filter & Search */}
-        <div className={css({ display: 'flex', justifyContent: 'space-between', margin: '1%'})}>
+        {/* <div className={css({ display: 'flex', justifyContent: 'space-between', margin: '1%'})}>
             <SearchBar />
             <Filter />
-        </div>
+        </div> */}
         {/* End Filter & Search */}
 
         {/* Map Pins & Markers */}
@@ -69,9 +74,9 @@ export default function Map({ pumps, setModalId, modalId }) {
               offsetTop={-10}
               onClick={()=> mapAdjust(pump)}>
               {/* { pump.id === modalId ? <Modal modalId={modalId} pumps={pumps} setModalId={setModalId} /> : null} */}
-              {pump.status === 0 ? (
+              {/* {pump.status === 0 ? (
                 <img
-                  src={mapPins.status.nonFunctional}
+                  src={nonFuncPin}
                   width={"31px"}
                   className={css({ zIndex: 2 })}
                   onClick={() => setModalId(pump.id)}
@@ -79,19 +84,25 @@ export default function Map({ pumps, setModalId, modalId }) {
                 />
               ) : pump.status === 1 ? (
                 <img
-                  src={mapPins.status.unknown}
+                  src={unknownPin}
                   width={"31px"}
                   onClick={() => setModalId(pump.id)}
                   alt=""
                 />
               ) : pump.status === 2 ? (
                 <img
-                  src={mapPins.status.functional}
+                  src={funcPin}
                   width={"31px"}
                   onClick={() => setModalId(pump.id)}
                   alt=""
                 />
-              ) : null}
+              ) : null} */}
+              <img
+                  src={funcPin}
+                  width={"31px"}
+                  // onClick={() => setModalId(pump.id)}
+                  alt=""
+                />
             </Marker>
           </>
         ))}

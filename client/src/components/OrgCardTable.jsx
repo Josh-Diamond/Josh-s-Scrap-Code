@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from 'emotion'
 import StatusSpread from './StatusSpread'
 
-export default function OrgCardTable() {
+export default function OrgCardTable({ pumps, loading }) {
+    const [currentPage, setCurrentPage] = useState(1)
+    const [pumpsPerPage, setPumpsPerPage] = useState(9)
+
+    // Get Current Pumps
+    const indexOfLastPump = currentPage * pumpsPerPage;
+    const indexOfFirstPump = indexOfLastPump - pumpsPerPage;
+    // const currentPumps = pumps.slice(indexOfFirstPump, indexOfLastPump)
+
+    // Change Page
+    // const paginate = pageNumber => setCurrentPage(pageNumber)
+
+    if (loading) {
+        return <h2>Loading...</h2>
+    }
     return (
         <table className={css({ width: '100%', borderCollapse: 'collapse'})}>
                         <tr className={css({ backgroundColor: '#CEE7FF'})}>

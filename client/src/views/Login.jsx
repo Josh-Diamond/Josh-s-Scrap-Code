@@ -4,8 +4,10 @@ import logo from '../static/loginICONS.png'
 import logoONE from '../static/loginONE.png'
 import logoTWO from '../static/loginTWO.png'
 import logoTHREE from '../static/loginTHREE.png'
+import axios from 'axios'
 
-export default function Login() {
+export default function Login({ history }) {
+  const [creds, setCreds] = useState({})
   const [image, setImage] = useState(0)
   const ImgArr = [logoONE, logoTWO, logoTHREE]
   const randomImage = () => {
@@ -16,6 +18,26 @@ export default function Login() {
   useEffect(() => {
     randomImage()
   }, [])
+
+  const changeHandler = e => {
+    setCreds({...creds,
+    [e.target.name]: e.target.value
+    })
+    console.log('creds', creds)
+  }
+
+  const login = e => {
+    e.preventDefault();
+    axios
+        .post('https://welldone-db.herokuapp.com/api/auth/login', creds)
+        .then(res => {
+            console.log('response =>',res)
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('account_id', res.data.id)
+            history.push('/home')
+        })
+        .catch(err => console.log(err))
+    }
 
     return (
       <div>
@@ -77,23 +99,25 @@ export default function Login() {
               </h4>
               <form
                 className={css({ display: "flex", flexDirection: "column", width: "100%" })}>
-                <label for="email" className={css({ marginBottom: "5%" })}>
+                <label htmlFor="email" className={css({ marginBottom: "5%" })}>
                   Email
                 </label>
                 <input
                   type="text"
-                  name="email"
+                  name="email_address"
                   id="email"
+                  onChange={changeHandler}
                   className={css({ marginBottom: "5%",border: '1px solid silver', borderRadius: "2px" })}
                 />
                 <br />
-                <label for="password" className={css({ marginBottom: "5%" })}>
+                <label htmlFor="password" className={css({ marginBottom: "5%" })}>
                   Password
                 </label>
                 <input
                   type="password"
                   name="password"
                   id="password"
+                  onChange={changeHandler}
                   className={css({ marginBottom: "5%", border: '1px solid silver', borderRadius: "2px" })}
                 />
                 <br />
@@ -104,7 +128,7 @@ export default function Login() {
                     color: "#FFFFFF",
                     border: "none",
                     borderRadius: "2px",
-                  })}>
+                  })} onClick={login} >
                   Sign In
                 </button>
               </form>

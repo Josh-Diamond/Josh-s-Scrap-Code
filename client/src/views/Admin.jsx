@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Nav from '../components/Nav'
 import { css } from 'emotion'
 import OrgCard from '../components/OrgCard'
+import OrgModal from '../components/OrgModal'
 
 export default function Admin() {
+    const [orgModal, setOrgModal] = useState(true)
 
+    const toggleModal = () => {
+        setOrgModal(!orgModal)
+    }
     return (
         <div className={css({ display: 'flex'})}>
             <Nav fixed />
@@ -26,7 +31,7 @@ export default function Admin() {
                 <div>
                     <div className={css({ width: '100%', display: 'flex', alignItems: 'center'})}>
                     <h2 className={css({ margin: '2% 5%', fontWeight: '400' })}>Organizations</h2>
-                    <button className={css({ margin: '25px 100px', cursor: 'pointer', border: 'none', width: '210px', height: '42px', backgroundColor: '#027EF3', color: 'white', fontSize: '1rem' })}>Create New Organization</button>
+                    <button className={css({ margin: '25px 100px', cursor: 'pointer', border: 'none', width: '210px', height: '42px', backgroundColor: '#027EF3', color: 'white', fontSize: '1rem' })} onClick={toggleModal} >Create New Organization</button>
                 </div>
                 {/* Map Org Links */}
                 <div className={css({ display: 'flex', flexWrap: 'wrap', margin: '2% 5.25%'})}>
@@ -47,6 +52,7 @@ export default function Admin() {
             </div>
                 {/* End Bottom Part */}
                 </div>
+                {orgModal ? <OrgModal setOrgModal={setOrgModal} /> : null}
             </div>
         </div>
     )
