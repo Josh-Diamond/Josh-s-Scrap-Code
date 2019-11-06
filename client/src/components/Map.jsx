@@ -28,13 +28,13 @@ console.log('pumpppsss', pumps)
     [14.841942, 107.66624], // Northeast coordinates
   ])
 
-  // const mapPins = {
-  //   status: {
-  //     functional: "../static/success.svg",
-  //     unknown: "../static/unknown.svg",
-  //     nonFunctional: "../static/error.svg",
-  //   },
-  // }
+  const mapPins = {
+    status: {
+      functional: "../static/success.svg",
+      unknown: "../static/unknown.svg",
+      nonFunctional: "../static/error.svg",
+    },
+  }
   
 
   const mapAdjust = pump => {
