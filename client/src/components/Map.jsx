@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import ReactMapGL, { Marker, NavigationControl } from "react-map-gl"
 import Modal from "../components/Modal"
 import SearchBar from './SearchBar'
@@ -10,8 +10,34 @@ import unknownPin from '../static/unknownPin.png'
 import nonFuncPin from '../static/nonFuncPin.png'
 
 
-export default function Map({ pumps, setModalId, modalId, history }) {
+export default function Map({ pumps, sensors, historic, setModalId, modalId, history }) {
+  const [masterKey, setMasterKey] = useState([])
+
+// useEffect(() => {
+//   setMaster()
+  
+// }, [])
+
+// const setMaster = () => {
+//   pumps.map(pump => {
+//     sensors.map(sensor => {
+//       historic.map(historyData => {
+//         if ((pump.sensor_pid === sensor.physical_id) && (pump.sensor_pid === historyData.sensor_id)) {
+//           setMasterKey([...masterKey, {pumpData: [...pump], sensorData: [...sensor], historicData: [...historyData]}])
+//         }
+//         if (pump.sensor_pid === sensor.physical_id) {
+//           setMasterKey([...masterKey, {pumpData: [...pump], sensorData: [...sensor], historicData: null}])
+//         }
+//       })
+//     })
+//   })
+
+//   console.log(masterKey)
+// }
+
 console.log('pumpppsss', pumps)
+console.log('sensors', sensors)
+console.log('historic', historic)
   const [viewPort, setViewPort] = useState({
     width: "100%",
     height: "100vh",
@@ -68,12 +94,14 @@ console.log('pumpppsss', pumps)
         {pumps.map(pump => (
           <>
             <Marker
+            zIndex={0}
               latitude={pump.latitude}
               longitude={pump.longitude}
               offsetLeft={-20}
               offsetTop={-10}
-              onClick={()=> mapAdjust(pump)}>
-              {/* { pump.id === modalId ? <Modal modalId={modalId} pumps={pumps} setModalId={setModalId} /> : null} */}
+              // onClick={()=> mapAdjust(pump)}>
+              >
+              { pump.id === modalId ? <Modal modalId={modalId} pumps={pumps} setModalId={setModalId} /> : null}
               {/* {pump.status === 0 ? (
                 <img
                   src={nonFuncPin}
@@ -100,7 +128,7 @@ console.log('pumpppsss', pumps)
               <img
                   src={funcPin}
                   width={"31px"}
-                  // onClick={() => setModalId(pump.id)}
+                  onClick={() => setModalId(pump.id)}
                   alt=""
                 />
             </Marker>
