@@ -14,7 +14,7 @@ function hexToRGB(hex, alpha) {
     }
   }
 
-export default function Filter() {
+export default function Filter({ pumps, viewPort, setViewPort, filteredPumps, setFilteredPumps }) {
     const pumpStyles = getPumpStyles({ iconSize: 15 })
     const [expanded, setExpanded] = useState(false)
     const [funcToggle, setFuncToggle] = useState(false)
@@ -24,6 +24,117 @@ export default function Filter() {
     const isExpanded = () => {
         setExpanded(!expanded)
       }
+    
+    const countrySelect = e => {
+      if (e.target.value === 'Cambodia') {
+        setViewPort({
+          width: "100%",
+          height: "100vh",
+          latitude: 12.55,
+          longitude: 104.9,
+          center: [12.55, 104.9],
+          zoom: 7.2,
+          minZoom: 6.28,
+          maxZoom: 13,
+        })
+      }
+      if (e.target.value === 'Uganda') {
+        setViewPort({
+          width: "100%",
+          height: "100vh",
+          latitude: 1.3733,
+          longitude: 32.2903,
+          center: [1.3733, 32.2903],
+          zoom: 7.2,
+          minZoom: 6.28,
+          maxZoom: 13,
+        })
+      }
+    }
+    
+    const funcSelect = e => {
+      setFuncToggle(!funcToggle)
+      const results = pumps.filter(pump => pump.status === 2)
+        setFilteredPumps([...filteredPumps, ...results])
+    }
+
+    const funcDeSelect = e => {
+      if(nonToggle && unToggle){
+        setFuncToggle(!funcToggle)
+        const results = pumps.filter(pump => (pump.status === 0 || pump.status === null || pump.status === 1))
+        setFilteredPumps([...results])
+      }
+      if(nonToggle && !unToggle){
+        setFuncToggle(!funcToggle)
+        const results = pumps.filter(pump => pump.status === 0 || pump.status === null)
+        setFilteredPumps([...results])
+      }
+      if(funcToggle && !nonToggle){
+        setFuncToggle(!funcToggle)
+        const results = pumps.filter(pump =>pump.status === 2)
+        setFilteredPumps([...results])
+      }
+      if(!funcToggle && !nonToggle) {
+        setFuncToggle(!funcToggle)
+        setFilteredPumps([])
+      }
+    }
+
+    const unSelect = e => {
+      setUnToggle(!unToggle)
+      const results = pumps.filter(pump => pump.status === 1)
+        setFilteredPumps([...filteredPumps, ...results])
+    }
+
+    const unDeSelect = e => {
+      if(nonToggle && funcToggle){
+        setUnToggle(!unToggle)
+        const results = pumps.filter(pump => (pump.status === 0 || pump.status === null || pump.status === 2))
+        setFilteredPumps([...results])
+      }
+      if(nonToggle && !funcToggle){
+        setUnToggle(!unToggle)
+        const results = pumps.filter(pump => pump.status === 0 || pump.status === null)
+        setFilteredPumps([...results])
+      }
+      if(funcToggle && !nonToggle){
+        setUnToggle(!unToggle)
+        const results = pumps.filter(pump =>pump.status === 2)
+        setFilteredPumps([...results])
+      }
+      if(!funcToggle && !nonToggle) {
+        setUnToggle(!unToggle)
+        setFilteredPumps([])
+      }
+    }
+
+    const nonFuncSelect = e => {
+      setNonToggle(!nonToggle)
+      const results = pumps.filter(pump => pump.status === 0 || pump.status === null)
+        setFilteredPumps([...filteredPumps, ...results])
+    }
+
+    const nonDeSelect = e => {
+      if(funcToggle && unToggle){
+        setNonToggle(!nonToggle)
+        const results = pumps.filter(pump => (pump.status === 2 || pump.status === 1))
+        setFilteredPumps([...results])
+      }
+      if(funcToggle && !unToggle){
+        setNonToggle(!nonToggle)
+        const results = pumps.filter(pump => pump.status === 2)
+        setFilteredPumps([...results])
+      }
+      if(unToggle && !funcToggle){
+        setNonToggle(!nonToggle)
+        const results = pumps.filter(pump =>pump.status === 1)
+        setFilteredPumps([...results])
+      }
+      if(!funcToggle && !unToggle) {
+        setNonToggle(!nonToggle)
+        setFilteredPumps([])
+      }
+    }
 
     return (
         <details
@@ -86,20 +197,21 @@ export default function Filter() {
           <form
             className={css({ display: "flex", flexDirection: "column", width: "100%" })}>
             <label
-              for="country"
+              htmlFor="country"
               className={css({ marginBottom: "5%", fontWeight: "bold", margin: "5%" })}>
               Country
             </label>
             <select
               name="country"
               id="country"
-              className={css({ margin: "0 5%", width: "80%", margin: "0 auto" })}>
+              onChange={countrySelect}
+              className={css({ width: "80%", margin: "0 auto", cursor: 'pointer' })}>
               <option value="Cambodia">Cambodia</option>
               <option value="Uganda">Uganda</option>
             </select>
 
             <label
-              for="status"
+              htmlFor="status"
               className={css({ marginBottom: "5%", fontWeight: "bold", margin: "5%" })}>
               Status
             </label>
@@ -141,7 +253,7 @@ export default function Filter() {
                   width: "40px",
                 })}>
                 <div
-                  onClick={() => setFuncToggle(!funcToggle)}
+                  onClick={funcToggle ? funcDeSelect : funcSelect}
                   className={
                     funcToggle
                       ? css({
@@ -206,7 +318,7 @@ export default function Filter() {
                   width: "40px",
                 })}>
                 <div
-                  onClick={() => setUnToggle(!unToggle)}
+                  onClick={unToggle ? unDeSelect : unSelect}
                   className={
                     unToggle
                       ? css({
@@ -271,7 +383,7 @@ export default function Filter() {
                   width: "40px",
                 })}>
                 <div
-                  onClick={() => setNonToggle(!nonToggle)}
+                  onClick={nonToggle ? nonDeSelect : nonFuncSelect}
                   className={
                     nonToggle
                       ? css({

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import ReactMapGL, { Marker, NavigationControl, Popup } from "react-map-gl"
-import Modal from "../components/Modal"
+// import Modal from "../components/Modal"
 import SearchBar from './SearchBar'
 import Filter from './Filter'
 import { css } from 'emotion'
@@ -11,7 +11,7 @@ import nonFuncPin from '../static/nonFuncPin.png'
 
 
 export default function Map({ pumps, setModalPump, modalPump, history }) {
-  
+  const [filteredPumps, setFilteredPumps] = useState([])  
   const [viewPort, setViewPort] = useState({
     width: "100%",
     height: "100vh",
@@ -37,10 +37,10 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
   }
   
 
-  const mapAdjust = pump => {
-    setViewPort({...viewPort, center: [pump.latitude, pump.longitude]})
-  }
-
+  // const mapAdjust = pump => {
+  //   setViewPort({...viewPort, center: [pump.latitude, pump.longitude]})
+  // }
+  console.log('pumps', pumps)
   return (
     <div className={css({ img: { cursor: "pointer" }, display: 'flex' })}>
       <Nav history={history} />
@@ -60,12 +60,12 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
         {/* Filter & Search */}
         <div className={css({ display: 'flex', justifyContent: 'space-between', margin: '1%'})}>
             <SearchBar />
-            <Filter />
+            <Filter pumps={pumps} viewPort={viewPort} setViewPort={setViewPort} filteredPumps={filteredPumps} setFilteredPumps={setFilteredPumps} />
         </div>
         {/* End Filter & Search */}
 
-        {/* Map Pins & Markers */}
-        {pumps.map(pump => (
+        {/* Map Pins, Markers, Modals */}
+        {filteredPumps.length === 0 ? pumps.map(pump => (
           <>
             <Marker
             zIndex={0}
@@ -75,35 +75,82 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
             offsetTop={-10}
             // onClick={()=> mapAdjust(pump)}>
             >
-                {/* {pump.status === 0 ? (
+                {(pump.status === 0 || pump.status === null) ? (
                   <img
                     src={nonFuncPin}
                     width={"31px"}
                     className={css({ zIndex: 2 })}
-                    onClick={() => setModalId(pump.id)}
+                    onClick={() => setModalPump(pump)}
                     alt=""
                     />
                     ) : pump.status === 1 ? (
                       <img
                       src={unknownPin}
                       width={"31px"}
-                      onClick={() => setModalId(pump.id)}
+                      onClick={() => setModalPump(pump)}
                       alt=""
                   />
                   ) : pump.status === 2 ? (
                     <img
                     src={funcPin}
                     width={"31px"}
-                    onClick={() => setModalId(pump.id)}
+                    onClick={() => setModalPump(pump)}
                     alt=""
                     />
-                  ) : null} */}
-                <img
+                  ) : null}
+                {/* <img
+                    src={funcPin}
+                    width={"31px"}
+                    onClick={() => setModalPump(pump)}
+                    alt=""
+                    /> */}
+                    {/* { pump.id === modalPump ? <Modal modalId={modalId} pumps={pumps} setModalId={setModalId} /> : null} */}
+            </Marker>
+            {modalPump ? (
+            <Popup latitude={modalPump.latitude} longitude={modalPump.longitude} onClose={()=> setModalPump(null)}>
+              <h2>Pump #{modalPump.id}</h2>
+            </Popup>
+            ) : null}
+          </>
+        ))  : filteredPumps.map(pump => (
+          <>
+            <Marker
+            zIndex={0}
+            latitude={pump.latitude}
+            longitude={pump.longitude}
+            offsetLeft={-20}
+            offsetTop={-10}
+            // onClick={()=> mapAdjust(pump)}>
+            >
+                {pump.status === 0 || pump.status === null ? (
+                  <img
+                    src={nonFuncPin}
+                    width={"31px"}
+                    className={css({ zIndex: 2 })}
+                    onClick={() => setModalPump(pump)}
+                    alt=""
+                    />
+                    ) : pump.status === 1 ? (
+                      <img
+                      src={unknownPin}
+                      width={"31px"}
+                      onClick={() => setModalPump(pump)}
+                      alt=""
+                  />
+                  ) : pump.status === 2 ? (
+                    <img
                     src={funcPin}
                     width={"31px"}
                     onClick={() => setModalPump(pump)}
                     alt=""
                     />
+                  ) : null}
+                {/* <img
+                    src={funcPin}
+                    width={"31px"}
+                    onClick={() => setModalPump(pump)}
+                    alt=""
+                    /> */}
                     {/* { pump.id === modalPump ? <Modal modalId={modalId} pumps={pumps} setModalId={setModalId} /> : null} */}
             </Marker>
             {modalPump ? (
@@ -113,12 +160,7 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
             ) : null}
           </>
         ))}
-        {/* End Map Pins & Markers */}
-
-        {/* Modal */}
-        {/* <Modal modalId={modalId} pumps={pumps} setModalId={setModalId} /> */}
-        {/* End Modal */}
-
+        {/* End Map Pins, Markers, Modals */}
         {/* Zoom Controls */}
         <div className={css({ position: "absolute", right: 10, bottom: "9%" })}>
           <NavigationControl showZoom />
