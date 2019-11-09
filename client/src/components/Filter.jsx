@@ -69,12 +69,12 @@ export default function Filter({ pumps, viewPort, setViewPort, filteredPumps, se
         const results = pumps.filter(pump => pump.status === 0 || pump.status === null)
         setFilteredPumps([...results])
       }
-      if(funcToggle && !nonToggle){
+      if(unToggle && !nonToggle){
         setFuncToggle(!funcToggle)
-        const results = pumps.filter(pump =>pump.status === 2)
+        const results = pumps.filter(pump =>pump.status === 1)
         setFilteredPumps([...results])
       }
-      if(!funcToggle && !nonToggle) {
+      if(!unToggle && !nonToggle) {
         setFuncToggle(!funcToggle)
         setFilteredPumps([])
       }

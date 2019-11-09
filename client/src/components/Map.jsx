@@ -35,12 +35,24 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
       nonFunctional: "../static/error.svg",
     },
   }
+
+  const searchFilter = e => {
+    if(filteredPumps.length === 0){
+      const filtered = pumps.filter(pump => pump.commune_name.toLowerCase().includes(e.target.value.toLowerCase()) || pump.country_name.toLowerCase().includes(e.target.value.toLowerCase()) || pump.district_name.toLowerCase().includes(e.target.value.toLowerCase()) || pump.latitude.toString().includes(e.target.value.toString()) || pump.longitude.toString().includes(e.target.value.toString()) || pump.sensor_id.toString().includes(e.target.value.toString()))
+      setFilteredPumps(filtered)
+    }
+    if(filteredPumps.length !== 0){
+      const filtered = filteredPumps.filter(pump => pump.commune_name.toLowerCase().includes(e.target.value.toLowerCase()) || pump.country_name.toLowerCase().includes(e.target.value.toLowerCase()) || pump.district_name.toLowerCase().includes(e.target.value.toLowerCase()) || pump.latitude.toString().includes(e.target.value.toString()) || pump.longitude.toString().includes(e.target.value.toString()) || pump.sensor_id.toString().includes(e.target.value.toString()))
+      setFilteredPumps(filtered)
+    }
+  }
   
 
   // const mapAdjust = pump => {
   //   setViewPort({...viewPort, center: [pump.latitude, pump.longitude]})
   // }
   console.log('pumps', pumps)
+  console.log('modalPUMP', modalPump)
   return (
     <div className={css({ img: { cursor: "pointer" }, display: 'flex' })}>
       <Nav history={history} />
@@ -59,7 +71,7 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
 
         {/* Filter & Search */}
         <div className={css({ display: 'flex', justifyContent: 'space-between', margin: '1%'})}>
-            <SearchBar />
+            <SearchBar searchFilter={searchFilter} />
             <Filter pumps={pumps} viewPort={viewPort} setViewPort={setViewPort} filteredPumps={filteredPumps} setFilteredPumps={setFilteredPumps} />
         </div>
         {/* End Filter & Search */}
@@ -108,7 +120,7 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
             </Marker>
             {modalPump ? (
             <Popup latitude={modalPump.latitude} longitude={modalPump.longitude} onClose={()=> setModalPump(null)}>
-              <h2>Pump #{modalPump.id}</h2>
+              <h2>Pump #{modalPump.sensor_id}</h2>
             </Popup>
             ) : null}
           </>
