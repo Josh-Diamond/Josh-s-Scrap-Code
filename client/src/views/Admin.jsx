@@ -5,7 +5,7 @@ import OrgCard from '../components/OrgCard'
 import OrgModal from '../components/OrgModal'
 
 export default function Admin() {
-    const [orgModal, setOrgModal] = useState(true)
+    const [orgModal, setOrgModal] = useState(false)
 
     const toggleModal = () => {
         setOrgModal(!orgModal)
