@@ -26,14 +26,14 @@ function App() {
   }, [])
   return (
     <div>
-      {/* <Admin /> */}
+     {/* <Home /> */}
       <Switch>
         <Route exact path="/" render={props => <Login {...props} />} /> */}
         {/* Private Routes */}
         <PrivateRoute path="/home" view={Home} />}/>
-        {/* <Route path="/monitors" render={props => <Monitors {...props} pumps={[{latitude: 13, longitude: 105}]} />}/> */}
+        <Route path="/monitors" render={props => <Monitors {...props} pumps={[{latitude: 13, longitude: 105}]} />}/>
         <Route path="/admin" render={props => <Admin {...props} pumps={[{latitude: 13, longitude: 105}]} />}/>
-        {/* <Route exact path="/settings" render={props => <Settings {...props} />} />  */}
+        <Route exact path="/settings" render={props => <Settings {...props} />} /> 
       </Switch>
     </div>
   );

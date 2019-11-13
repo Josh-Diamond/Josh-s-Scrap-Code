@@ -10,15 +10,22 @@ export default function Home({ history }) {
    
     useEffect(() => {
         fetchSensors()
+        // fetchStatuses()
     },[])
 
+    // const fetchStatuses = () => {
+    //     axios
+    //         .get('https://dashboard.welldone.org/.netlify/functions/get_momo_status?id=4719')
+    //         .then(res => console.log('fetchStatuses', res))
+    //         .catch(err => console.log(err))
+    // }
     const fetchSensors = () => {
         axiosWithAuth()
             .get('https://welldone-db.herokuapp.com/api/sensors')
             .then(res => setSensors(res.data))
             .catch(err => console.log(err))
     }
-
+    console.log("sensors",sensors)
     return (
         <div>
             <Map pumps={sensors} modalPump={modalPump} setModalPump={setModalPump} history={history} />

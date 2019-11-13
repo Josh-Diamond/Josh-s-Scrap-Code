@@ -10,7 +10,7 @@ export default function OrgModal({ setOrgModal }) {
             <div className={css({ padding: '0 20px 0 20px', position: 'absolute', left: '36%', right: '36%', top: '38%', bottom: '38%', margin: 'auto', backgroundColor: '#F3F7FC' })}>
                 <button className={css({ float: 'right', borderRadius: '50%', cursor: 'pointer', height: '25px', width: '25px', textAlign: 'center', marginTop: '15px', color: '#8E1818', border: '2px solid #8E1818', backgroundColor: '#F3F7FC' })} onClick={close}>x</button>
                 <div>
-                    <h2>Create Organization</h2>
+                    <h2 className={css({ color: 'black'})}>Create Organization</h2>
                 </div>
             </div>
         </div>

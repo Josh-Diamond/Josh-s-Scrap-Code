@@ -24,7 +24,7 @@ export default function Nav({ fixed, history }) {
             <Link to='/home' className={css({ textDecoration: 'none'})}>
                 <NavItem title="Home" image={HomeIcon} />
             </Link>
-            {/* <Link to='/monitors' className={css({ textDecoration: 'none'})}>
+            <Link to='/monitors' className={css({ textDecoration: 'none'})}>
                 <NavItem title="Monitors" icon={MonitorsIcon} />
             </Link>
             <Link to='/admin' className={css({ textDecoration: 'none'})}>
@@ -32,7 +32,7 @@ export default function Nav({ fixed, history }) {
             </Link>
             <Link to='/settings' className={css({ textDecoration: 'none'})}>
                 <NavItem title="Settings" icon={SettingsIcon} />
-            </Link> */}
+            </Link>
             <div onClick={logout}>
                 <NavItem title="Logout" icon={LogoutIcon} />
             </div>
