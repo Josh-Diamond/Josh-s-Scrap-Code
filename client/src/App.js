@@ -26,7 +26,6 @@ function App() {
   }, [])
   return (
     <div>
-     {/* <Home /> */}
       <Switch>
         <Route exact path="/" render={props => <Login {...props} />} /> */}
         {/* Private Routes */}
