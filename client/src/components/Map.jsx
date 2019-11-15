@@ -8,10 +8,10 @@ import Nav from './Nav'
 import funcPin from '../static/funcPin.png'
 import unknownPin from '../static/unknownPin.png'
 import nonFuncPin from '../static/nonFuncPin.png'
-import { FiAlertCircle } from "react-icons/fi";
+// import { FiAlertCircle } from "react-icons/fi";
 import { AiOutlineQuestionCircle, AiOutlineExclamationCircle } from "react-icons/ai";
 import StatusCard from './StatusCard'
-
+import { FiHelpCircle, FiAlertCircle, FiCheckCircle } from "react-icons/fi"
 
 
 export default function Map({ pumps, setModalPump, modalPump, history }) {
@@ -183,10 +183,10 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
                     <FiAlertCircle className={css({ color: '#f44336', fontSize: '1.7rem' })} />
                   </div>) :
                   modalPump.status === 1 ? (<div className={css({ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffe2b8', height: '45px', width: '45px', borderRadius: '50%'})}>
-                  <FiAlertCircle className={css({ color: '#FFAD34', fontSize: '1.7rem' })} />
+                  <FiHelpCircle className={css({ color: '#FFAD34', fontSize: '1.7rem' })} />
                 </div>) :
                 modalPump.status === 2 ? (<div className={css({ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#B8FFB8', height: '45px', width: '45px', borderRadius: '50%'})}>
-                <FiAlertCircle className={css({ color: '#01c000', fontSize: '1.7rem' })} />
+                <FiCheckCircle className={css({ color: '#01c000', fontSize: '1.7rem' })} />
               </div>) :
               null}
                   <h3 className={css({ margin: 0})}>{modalPump.sensor_id}</h3>
@@ -198,7 +198,7 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
                   </div>
                   {/* Static Status Spread End */}
                   <div className={css({ color: '#212121', margin: '3% 0'})}>
-                    <h3 className={css({ margin: 0})}>{modalPump.country_name}</h3>
+                    <h3 className={css({ margin: 0})}>{modalPump.country_name}</h3> 
                     <p className={css({ margin: 0})}>{modalPump.commune_name}</p>
                   </div>
                 </div>
@@ -255,10 +255,10 @@ export default function Map({ pumps, setModalPump, modalPump, history }) {
                     <FiAlertCircle className={css({ color: '#f44336', fontSize: '1.7rem' })} />
                   </div>) :
                   modalPump.status === 1 ? (<div className={css({ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffe2b8', height: '45px', width: '45px', borderRadius: '50%'})}>
-                  <FiAlertCircle className={css({ color: '#FFAD34', fontSize: '1.7rem' })} />
+                  <FiHelpCircle className={css({ color: '#FFAD34', fontSize: '1.7rem' })} />
                 </div>) :
                 modalPump.status === 2 ? (<div className={css({ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#B8FFB8', height: '45px', width: '45px', borderRadius: '50%'})}>
-                <FiAlertCircle className={css({ color: '#01c000', fontSize: '1.7rem' })} />
+                <FiCheckCircle className={css({ color: '#01c000', fontSize: '1.7rem' })} />
               </div>) :
               null}
                   <h3 className={css({ margin: 0})}>{modalPump.sensor_id}</h3>
