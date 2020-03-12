@@ -3,7 +3,7 @@ import Map from '../components/Map'
 import axiosWithAuth from '../components/axiosWithAuth'
 import { css } from 'emotion'
 
-export default function Home({ history }) {
+export default function Home({ history, pumps }) {
     const [modalPump, setModalPump] = useState(null)
     const [sensors, setSensors] = useState([])
 
@@ -28,7 +28,7 @@ export default function Home({ history }) {
     console.log("sensors",sensors)
     return (
         <div>
-            <Map pumps={sensors} modalPump={modalPump} setModalPump={setModalPump} history={history} />
+            <Map pumps={pumps} modalPump={modalPump} setModalPump={setModalPump} history={history} />
         </div>
     )
 }

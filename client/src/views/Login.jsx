@@ -28,15 +28,17 @@ export default function Login({ history }) {
 
   const login = e => {
     e.preventDefault();
-    axios
-        .post('https://welldone-db.herokuapp.com/api/auth/login', creds)
-        .then(res => {
-            console.log('response =>',res)
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('account_id', res.data.id)
-            history.push('/home')
-        })
-        .catch(err => console.log(err))
+    // axios
+    //     .post('https://welldone-db.herokuapp.com/api/auth/login', creds)
+    //     .then(res => {
+    //         console.log('response =>',res)
+    //         localStorage.setItem('token', res.data.token)
+    //         localStorage.setItem('account_id', res.data.id)
+    //         history.push('/home')
+    //     })
+    //     .catch(err => console.log(err))
+    localStorage.setItem('token', 'token_for_portfolio_access')
+    history.push('/home')
     }
 
     return (
@@ -128,6 +130,7 @@ export default function Login({ history }) {
                     color: "#FFFFFF",
                     border: "none",
                     borderRadius: "2px",
+                    cursor: "pointer"
                   })} onClick={login} >
                   Sign In
                 </button>

@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import OrgCard from '../components/OrgCard'
 import OrgModal from '../components/OrgModal'
 
-export default function Admin() {
+export default function Admin({ history }) {
     const [orgModal, setOrgModal] = useState(false)
 
     const toggleModal = () => {
@@ -12,7 +12,7 @@ export default function Admin() {
     }
     return (
         <div className={css({ display: 'flex'})}>
-            <Nav fixed />
+            <Nav fixed history={history} />
             <div className={css({ width: '100%', marginLeft: '240px' })}>
                 {/* top part */}
             <div className={css({  width: '100%', display: 'flex', alignItems: 'flex-start'})}>
